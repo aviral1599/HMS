@@ -1,0 +1,69 @@
+
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="{% static 'output.css' %}">
+       <link rel="stylesheet" href="{% static 'style.css' %}">
+  
+       <style>
+
+            body{
+                background: rgb(36,3,89);
+                background: linear-gradient(90deg, rgba(36,3,89,1) 0%, rgba(10,159,193,1) 13%, rgba(11,133,165,1) 93%, rgba(11,61,164,1) 99%, rgba(11,41,158,1) 100%, rgba(11,26,153,1) 100%);
+            }
+            td{
+                padding-right : 30px
+                padding-top : 100 px
+                padding-left:20px
+                text-align: center;
+            }
+            tr:hover {background-color: green;}
+            .flex{
+                margin-left:50px
+            }
+            .hidden{
+                margin-right:50px
+            }
+          body{
+              font-family: Georgia;
+          }
+          .flex{
+              margin-left : 450px;
+          }
+       </style>
+   </head>
+  
+  <body>
+  {% block content %}
+    <div class="flex flex-wrap items-center justify-between py-6">
+      <div class="w-1/2 md:w-auto">
+        <a href="{% url 'index' %}" class="text-white font-bold text-2xl">
+          Thapar Hostel Management
+        </a>
+      </div>
+    </div>
+   <div class="container d-flex justify-content-center">
+       <div class="bg"></div>
+   <div class="bg bg2"></div>
+   <div class="bg bg3"></div>
+
+   {% block body %}
+   <div>
+   <p class="h1">Logout Successful</p>
+   </div>
+   <br>
+    <div>
+        <br>
+    <a class="h3" href="{% url 'index' %}"><p class = "mt-5 text-right" >GO TO HOME</p></a>
+    </div>
+   </div>
+</div>
+</div>
+{% endblock %}
+{% endblock %}
+  </body>

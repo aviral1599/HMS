@@ -1,0 +1,370 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Room Allocation</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'output.css' %}">
+
+
+    <style>
+        @font-face {
+            font-family: GeosansLight;
+            src: url(sansation_bold.woff);
+            font-weight: bold;
+          }
+        body{
+            font-family: Georgia;
+        }
+        .flex{
+            margin-left : 10px;
+        }
+        .heading{
+            font-size: 30px;
+            font-family: Georgia;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- Navbar -->
+<nav class="navbar navbar-expand-lg" style =" background-color: transparent;">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <div class="flex flex-wrap items-center justify-between py-6">
+            <div class="w-1/2 md:w-auto">
+              <a href="{% url 'dashboard' %}" class="text-white font-bold text-2xl">
+                <p class="heading">Thapar Hostel Management</p>
+              </a>
+            </div>
+        </div>
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse ml-5 mb-3" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mr-5">
+          <li class="nav-item">
+            <a class="nav-link h3 ml-5" style ="color:white;" href="#">Announcements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h3 ml-5" style ="color:white;" href="#">Mess Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h3 ml-5" style ="color:white;" href="#">Contact Us</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+  
+      <!-- Right elements -->
+      <div class="d-flex align-items-center mr-5 h3">
+
+
+        <div class="btn-group mb-3">
+            <button type="button" class="btn btn-success"><p class = "h4" style ="color:white;" >Welcome {{student.student_name}}</p></button>
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class = "h3" style ="color:black;" href="{% url 'profile' %}">Profile</a></li>
+              <li><a class = "h3" style ="color:black;" href="{% url 'change_password' %}">Change Password</a></li>
+              {% comment %} <li><a href="#">Something else here</a></li> {% endcomment %}
+              <li role="separator" class="divider"></li>
+              <li><a class = "h3" style ="color:black;" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </div>
+  
+       
+      </div>
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  
+    </div>
+
+        <!-- Topbar -->
+        {% comment %} {% if user.is_authenticated %}
+        {% if diff.is_student %} {% endcomment %}
+
+        <!-- Content for Student -->
+        <div id="content" class="animated fadeIn">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="panel-title">My Profile</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>See Your Profile</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="{% url 'profile' %}">View</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <span class="panel-title">Select Room</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select a room from available Rooms</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="{% url 'select' %}">Select</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-system">
+                            <div class="panel-heading">
+                                <span class="panel-title">Register Complaint</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Register Your Complaints</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="{% url 'complaint' %}">Register</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="panel-title">Room Cleaning</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Request Room Cleaning</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="{% url 'room_clean' %}">Request</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <span class="panel-title">Mess FeedBack</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Kindly give your valuable Feedback on Today's Mess Food</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="{% url 'feedback' %}">Feedback</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="panel-title">Change Password</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Change your Password</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="{% url 'change_password' %}">Change</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% comment %} 
+        {% else %}
+
+        <!-- Content for Hostel Accountant -->
+        <div id="content" class="animated fadeIn">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <span class="panel-title">Register New Student</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed and see the rooms which are vacant and the further number of
+                                    students that can be accommodated</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="register/">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="panel-title">Allocate Room</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Allot a new room to a student that hasn't been allotted a room already to the
+                                    student </br></br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="{% url 'select' %}">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <span class="panel-title">Change Room</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed with sanctioning the change room request of the student with his /
+                                    her student details.</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="change/">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-system">
+                            <div class="panel-heading">
+                                <span class="panel-title">Swap Room</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed with sanctioning or declining the mutually agreed request of two
+                                    students to swap their rooms</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="swap/">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <span class="panel-title">Deallocate Batch</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed and deallocate the rooms of all the students graduating in a
+                                    particular batch by entering their year of joining/batch year.</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="deallocate/">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-warnings">
+                            <div class="panel-heading">
+                                <span class="panel-title">All Requests</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed and see the list of all the students who have requested for the
+                                    room modifications and then grant or deny the requests.</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="show_request/">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <span class="panel-title">All Vacant Rooms</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed and see the rooms in the hostel which are vacant and the further
+                                    number of students that can be accommodated into the room</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="show_vacancy/">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-system">
+                            <div class="panel-heading">
+                                <span class="panel-title">All Student Details</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed to the page with all the students registered with the institute
+                                    and displays details including names, roll no, email and room no.</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href="show_students/">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+        {% endif %} {% endcomment %}
+        <section id="content_wrapper">
+            <section id="content" class="table-layout animated fadeIn">
+            </section>
+    </div>
+
+    <style>
+        .allcp-form .panel.heading-border:before,
+        .allcp-form .panel .heading-border:before {
+            transition: all 0.7s ease;
+        }
+    </style>
+    <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+    <script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+
+    <script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+
+    <script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+</body>

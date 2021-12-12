@@ -1,0 +1,42 @@
+from django.contrib import admin
+from django.urls import path,include
+from selection import views
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    #path('', views.home, name='register'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('reg_form/', views.register, name='reg_form'),
+    path('login/', views.user_login, name='login'),
+    path('warden_login/', views.warden_login, name='warden_login'),
+    path('warden_dues/', views.warden_dues, name='warden_dues'),
+    path('warden_add_due/', views.warden_add_due, name='warden_add_due'),
+    path('warden_remove_due/', views.warden_remove_due, name='warden_remove_due'),
+    path('hostels/<slug:hostel_name>/', views.hostel_detail_view, name='hostel'),
+    path('login/edit/', views.edit, name='edit'),
+    path('login/select/', views.select, name='select'),
+    path('logout/', views.logout_view, name='logout'),
+    path('reg_form/login/edit/', views.edit, name='update'),
+    path('BH5_GroundFloor/', views.BH5_GroundFloor, name='BH5_GroundFloor'),
+    path('BH5_Floor1/', views.BH5_Floor1, name='BH5_Floor1'),
+    path('BH5_Floor2/', views.BH5_Floor2, name='BH5_Floor2'),
+    path('BH5_Floor3/', views.BH5_Floor3, name='BH5_Floor3'),
+    path('BH5_Floor4/', views.BH5_Floor4, name='BH5_Floor4'),
+    path('BH5_Floor5/', views.BH5_Floor5, name='BH5_Floor5'),
+    path('BH5_Floor6/', views.BH5_Floor6, name='BH5_Floor6'),
+    path('dashboard/', views.dashboard,name = "dashboard"),
+    path('layout/<slug:hostel_name>/', views.layout,name = "layout"),
+    path('profile/', views.profile,name = "profile"),
+    path('feedback/', views.feedback_form,name = "feedback"),
+    path('thanks/', views.thanks,name = "thanks"),
+    path('change-password/dashboard',views.dashboard,name = "dashboard"),
+    path('change-password/',auth_views.PasswordChangeView.as_view(template_name='registration/change-password.html',success_url='dashboard'),name='change_password'),
+    path('password-reset/',auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html',subject_template_name='registration/password_reset_subject.txt',email_template_name='registration/password_reset_email.html',),name='password_reset'),
+    path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_mail_sent.html'),name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirmation.html'),name='password_reset_confirm'),
+    path('password-reset-complete/',auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_completed.html'),name='password_reset_complete'),
+    path('complaint/', views.complaint_form,name = "complaint"),
+    path('room_clean/', views.roomclean_form,name = "room_clean"),
+]

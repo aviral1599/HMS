@@ -1,0 +1,172 @@
+
+{% load static %}
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'output.css' %}">
+<style>
+
+    body{
+        background: rgb(36,3,89);
+        background: linear-gradient(90deg, rgba(36,3,89,1) 0%, rgba(10,159,193,1) 13%, rgba(11,133,165,1) 93%, rgba(11,61,164,1) 99%, rgba(11,41,158,1) 100%, rgba(11,26,153,1) 100%);
+        font-family: Georgia;
+    }
+    td{
+        padding-right : 30px
+        padding-top : 100 px
+        padding-left:20px
+        text-align: center;
+    }
+    tr:hover {background-color: green;}
+    .flex{
+        margin-left:50px
+    }
+    .hidden{
+        margin-right:50px
+    }
+</style>
+
+
+</head>
+{% block content %}
+<body>
+  <div>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg" style =" background-color: transparent;">
+<!-- Container wrapper -->
+<div class="container-fluid">
+    <div class="flex flex-wrap items-center justify-between py-6">
+        <div class="w-1/2 md:w-auto">
+          <a href="{% url 'dashboard' %}" class="text-white font-bold text-2xl">
+            <p class="heading">Thapar Hostel Management</p>
+          </a>
+        </div>
+    </div>
+  <!-- Toggle button -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-mdb-toggle="collapse"
+    data-mdb-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Collapsible wrapper -->
+  <div class="collapse navbar-collapse ml-5 mt-2" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mr-5">
+      <li class="nav-item">
+        <a class="nav-link h6 ml-5" style ="color:white;" href="#">Announcements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link h6 ml-3" style ="color:white;" href="#">Mess Menu</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link h6 ml-3" style ="color:white;" href="#">Contact Us</a>
+      </li>
+    </ul>
+    <!-- Left links -->
+  </div>
+  <!-- Collapsible wrapper -->
+
+  <!-- Right elements -->
+  <div class="d-flex align-items-center mr-5 h3">
+
+
+    <div class="btn-group mt-2">
+        <button type="button" class="btn btn-success"><p style ="color:white;" >Welcome {{student.student_name}}</p></button>
+        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a style ="color:black;" href="{% url 'profile' %}">Profile</a></li>
+          <li><a style ="color:black;" href="{% url 'change_password' %}">Change Password</a></li>
+          {% comment %} <li><a href="#">Something else here</a></li> {% endcomment %}
+          <li role="separator" class="divider"></li>
+          <li><a style ="color:black;" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </div>
+
+   
+  </div>
+  <!-- Right elements -->
+</div>
+<!-- Container wrapper -->
+</nav>
+
+</div>
+
+<div>
+    <div>
+        <table class="table table-sm table-hover ml-5 w-75">
+            <thead>
+              <p class="h2 text-center" style="margin-right:400px;">Details of Student</p>
+            </thead>
+            <tbody >
+              <tr>
+                <th class ="align-middle" scope="row">Name</th>
+                <td class ="align-middle">{{ student.student_name }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Father's Name</th>
+                <td>{{ student.father_name }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Roll No. </th>
+                <td>{{ student.enrollment_no }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Course </th>
+                <td>{{ student.course }}</td>
+              </tr>
+              <tr>
+                <th scope="row"> Date of birth (yyyy-mm-dd) </th>
+                <td>{{ student.dob }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Gender </th>
+                <td>{{ student.gender }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Room Alooted </th>
+                <td>
+                {% if student.room_allotted %} {{ student.room }} in {{ student.room.hostel }}
+                {% else %} Not Allotted
+                {% endif %}
+               </td>
+              </tr>
+              <tr>
+                <th scope="row">Dues </th>
+                <td>
+                    {% if student.no_dues %} <div style="color: green">No Dues</div>
+                    {% else %} <div style="color: red">Unpaid Dues</div>
+                    {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        <div>
+        <a class="button-custom ml-5" href="{% url 'select' %}">
+            <p class="h2 ml-5">Select a Room</p>
+        </a></div>
+    </div>
+</div>
+</body>
+{% endblock content %}

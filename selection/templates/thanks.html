@@ -1,0 +1,42 @@
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="{% static 'output.css' %}">
+       <link rel="stylesheet" href="{% static 'style.css' %}">
+  
+       <style>
+          body{
+              font-family: Georgia;
+          }
+          .flex{
+              margin-left : 450px;
+          }
+       </style>
+   </head>
+  
+  <body>
+  {% block content %}
+    <div class="flex flex-wrap items-center justify-between py-6">
+      <div class="w-1/2 md:w-auto">
+        <a href="{% url 'dashboard' %}" class="text-white font-bold text-2xl">
+          Thapar Hostel Management
+        </a>
+      </div>
+    </div>
+   <div class="container d-flex justify-content-center">
+       <div class="bg"></div>
+   <div class="bg bg2"></div>
+   <div class="bg bg3"></div>
+
+   {% block body %}
+   <p class='h1'>Thanks for your response.</p>
+   {% comment %} <p><a href="">Response again?</a></p> {% endcomment %}
+   {% endblock %}
+   </div>
+</div>
+</div>
+{% endblock %}
+  </body>

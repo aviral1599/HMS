@@ -1,0 +1,440 @@
+
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'output.css' %}">
+ 
+
+      <style>
+        body{
+          background: rgb(36,3,89);
+          background: linear-gradient(90deg, rgba(36,3,89,1) 0%, rgba(10,159,193,1) 13%, rgba(11,133,165,1) 93%, rgba(11,61,164,1) 99%, rgba(11,41,158,1) 100%, rgba(11,26,153,1) 100%);
+        }
+        .jumbotron{
+          height : 500px;
+          background-size: cover;
+          width = 50%;
+          color: #0a9fc1;
+        }
+        .legend{
+          margin-left: 50px;
+          margin-top : 20px;
+          margin-bottom : 20px
+
+        }
+        .select2{
+          margin-left: 25%;
+          margin-right: 25%;
+          margin-top : 10px;
+          margin-bottom : 20px
+          text-align : center
+        }
+
+        .select{
+          margin-left: 25%;
+          margin-right: 25%;
+          margin-top : 10px;
+          margin-bottom : 20px
+          text-align : center
+          outline: 2px dashed rgb(216,255,248);
+          box-shadow: 0 0 0 2px rgb(39,144,198);
+          background: #fffede;
+          padding: .5em 1.3em;
+          animation: 1s animateBorder ease infinite;
+          box-decoration-break: clone;
+        }
+        @keyframes animateBorder{
+          to{
+            outline-color: rgb(39,144,198);
+            box-shadow: 0 0 0 2px rgb(216,255,248);
+          }
+        }
+
+        .flex{
+          margin-left : 50px;
+      }
+      .heading{
+          font-size: 20px;
+          font-family: Georgia;
+      }
+      </style>
+   </head>
+
+   {% block content %}
+   <body>
+    <div>
+      <!-- Navbar -->
+<nav class="navbar navbar-expand-lg" style =" background-color: transparent;">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+      <div class="flex flex-wrap items-center justify-between py-6">
+          <div class="w-1/2 md:w-auto">
+            <a href="{% url 'dashboard' %}" class="text-white font-bold text-2xl">
+              <p class="heading">Thapar Hostel Management</p>
+            </a>
+          </div>
+      </div>
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse ml-5 mt-2" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mr-5">
+        <li class="nav-item">
+          <a class="nav-link h6 ml-5" style ="color:white;" href="#">Announcements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link h6 ml-3" style ="color:white;" href="#">Mess Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link h6 ml-3" style ="color:white;" href="#">Contact Us</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center mr-5 h3">
+
+
+      <div class="btn-group mt-2">
+          <button type="button" class="btn btn-success"><p style ="color:white;" >Welcome {{student.student_name}}</p></button>
+          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a style ="color:black;" href="{% url 'profile' %}">Profile</a></li>
+            <li><a style ="color:black;" href="{% url 'change_password' %}">Change Password</a></li>
+            {% comment %} <li><a href="#">Something else here</a></li> {% endcomment %}
+            <li role="separator" class="divider"></li>
+            <li><a style ="color:black;" href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+
+     
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+
+  </div>
+
+
+     <div class = "row">
+    <table style="height: 386px; width: 869px; border-color: #000000; margin-left: auto; margin-right: auto;" border="1" cellpadding="0">
+      <tbody>
+      <tr style="height: 25px; border-color: #000000;">
+      <td style="width: 40.7083px; height: 25px; background-color: #ffff4d;">&nbsp; W</td>
+      <td style="width: 17px; height: 25px; background-color: #ffff4d;">&nbsp; W</td>
+      <td class = "1120 seat2S" style="width: 81.4167px; height: 25px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;A120(D)</td>
+      <td class = "1119 seat2S" style="width: 81.4167px; height: 25px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;A119(D)</td>
+      <td class = "1118 seat2S"style="width: 81.4167px; height: 25px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;A118(D)</td>
+      <td class = "1117 seat2S" style="width: 84.2708px; height: 25px;" colspan="2">&nbsp;&nbsp;A117(D)</td>
+      <td style="width: 88.4583px; height: 75px; background-color: #ffb84d; border-color: #000000;" colspan="4" rowspan="3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;MESS</td>
+      <td class = "2117 seat2S" style="width: 82.9583px; height: 25px;" colspan="2">&nbsp;&nbsp;&nbsp; B117(D)</td>
+      <td class = "2118 seat2S" style="width: 82.9583px; height: 25px;" colspan="2">&nbsp;&nbsp;&nbsp; B118(D)</td>
+      <td class = "2119 seat2S" style="width: 82.9583px; height: 25px;" colspan="2">&nbsp;&nbsp;&nbsp; B119(D)</td>
+      <td class = "2120 seat2S" style="width: 82.9583px; height: 25px;" colspan="2">&nbsp;&nbsp;&nbsp; B120(D)</td>
+      <td style="width: 20px; height: 25px; background-color: #ffff4d;">&nbsp;W</td>
+      <td style="width: 41.4792px; height: 25px; background-color: #ffff4d;">&nbsp; W</td>
+      </tr>
+      <tr style="height: 25px;">
+      <td style="width: 40.7083px; height: 25px; background-color: #ffff4d;">&nbsp; W</td>
+      <td style="width: 345.521px; height: 25px; background-color: #4dd2ff;" colspan="9">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Corridor&nbsp;</td>
+      <td style="width: 351.833px; height: 25px; background-color: #4dd2ff;" colspan="9">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Corridor&nbsp;</td>
+      <td style="width: 41.4792px; height: 25px; background-color: #ffff4d;">&nbsp; W</td>
+      </tr>
+      <tr style="height: 25px;">
+      <td class = "1121 seat2S" style="width: 40.7083px; height: 25px;" rowspan="2">&nbsp;&nbsp;
+      <p>&nbsp;A121&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      </td>
+      <td style="width: 17px; height: 100px; background-color: #4dd2ff;" rowspan="4">&nbsp;</td>
+      <td class = "1108 seat2S" style="width: 40.7083px; height: 25px;" rowspan="2">&nbsp;
+      <p>&nbsp;A108&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      &nbsp;</td>
+      <td class = "1107 seat1S" style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;A107&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1106 seat1S" style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;A106&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1105 seat1S" style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;A105&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1104 seat1S" style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;A104&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1103 seat1S" style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;A103&nbsp;</p>
+      <p>&nbsp; &nbsp;(S)</p>
+      </td>
+      <td class = "1102 seat1S" style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;A102&nbsp;</p>
+      <p>&nbsp; &nbsp;(S)</p>
+      </td>
+      <td class = "1101 seat1S" style="width: 43.5625px; height: 25px;">
+      <p>&nbsp;A101&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2101 seat1S" style="width: 41.4792px; height: 25px;">
+      <p>&nbsp;B101&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2102 seat1S" style="width: 41.4792px; height: 25px;">
+      <p>&nbsp;</p>
+      <p>&nbsp;B102&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2103 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;B103&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2104 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;B104&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2105 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;B105&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2106 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;B106&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2107 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;B107&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2108 seat2S"  style="width: 41.4792px; height: 25px;" rowspan="2">&nbsp;
+      <p>&nbsp;B108&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      &nbsp;</td>
+      <td style="width: 20px; height: 100px; background-color: #4dd2ff;" rowspan="4">&nbsp;</td>
+      <td class = "2121 seat2S" style="width: 41.4792px; height: 25px;" rowspan="2">&nbsp;
+      <p>&nbsp;B121&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      &nbsp;</td>
+      </tr>
+      <tr style="height: 25px;">
+      <td style="width: 287.812px; height: 50px;" colspan="7" rowspan="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BLOCK A</td>
+      <td style="width: 45px; height: 100.042px; background-color: #b3cccc;" colspan="2" rowspan="4">&nbsp;</td>
+      <td style="width: 45px; height: 100.042px; background-color: #b3cccc;" colspan="2" rowspan="4">&nbsp;</td>
+      <td style="width: 290.354px; height: 50px;" colspan="7" rowspan="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BLOCK B</td>
+      </tr>
+      <tr style="height: 25px;">
+      <td class = "1122 seat2S" style="width: 40.7083px; height: 25px;" rowspan="2">&nbsp;&nbsp;
+      <p>&nbsp;A122&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      </td>
+      <td class = "1109 seat2S"style="width: 40.7083px; height: 25px;" rowspan="2">&nbsp;&nbsp;
+      <p>&nbsp;A109&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      </td>
+      <td class = "2109 seat2S"style="width: 41.4792px; height: 25px;" rowspan="2">&nbsp;&nbsp;
+      <p>&nbsp;B109&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      </td>
+      <td class = "2122 seat2S" style="width: 41.4792px; height: 25px;" rowspan="2">&nbsp;
+      <p>&nbsp;B122&nbsp;</p>
+      <p>&nbsp; (D)</p>
+      &nbsp;</td>
+      </tr>
+      <tr style="height: 25px;">
+      <td class = "1110 seat1S" style="width: 40.7083px; height: 25px;">&nbsp;A110&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1111 seat1S" style="width: 40.7083px; height: 25px; ">
+        &nbsp;A111&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1112 seat1S" style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;</p>
+      <p>A112&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1113 seat1S"  style="width: 40.7083px; height: 25px;">
+      <p>&nbsp;</p>
+      <p>A113</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1114 seat1S" style="width: 40.7083px; height: 25px;">&nbsp;A114&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1115 seat1S" style="width: 40.7083px; height: 25px;">&nbsp;A115&nbsp;
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "1116 seat1S" style="width: 43.5625px; height: 25px;">&nbsp;A116&nbsp;&nbsp;
+      <p>&nbsp; &nbsp;(S)</p>
+      </td>
+      <td  class = "2116 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;
+      <p>&nbsp;B116&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2115 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;
+      <p>&nbsp;B115&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2114 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;
+      <p>&nbsp;B114&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2113 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;
+      <p>&nbsp;B113&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2112 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;
+      <p>&nbsp;B112&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2111 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;
+      <p>&nbsp;B111&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      <td class = "2110 seat1S" style="width: 41.4792px; height: 25px;">&nbsp;
+      <p>&nbsp;B110&nbsp;</p>
+      <p>&nbsp; (S)</p>
+      </td>
+      </tr>
+      <tr style="height: 25.0417px; text-align: center;">
+      <td style="width: 40.7083px; height: 25.0417px; background-color: #ffff4d;">W</td>
+      <td style="width: 345.521px; height: 25.0417px; background-color: #4dd2ff;" colspan="9">&nbsp;Corridor&nbsp;</td>
+      <td style="width: 351.833px; height: 25.0417px; background-color: #4dd2ff;" colspan="9">&nbsp; &nbsp;Corridor&nbsp;</td>
+      <td style="width: 41.4792px; height: 25.0417px; background-color: #ffff4d;">W</td>
+      </tr>
+      <tr style="height: 14px;">
+      <td style="width: 40.7083px; height: 14px; background-color: #ffff4d;">&nbsp; W</td>
+      <td style="width: 17px; height: 14px; background-color: #ffff4d;">&nbsp; W</td>
+      <td class = "1123 seat2S" style="width: 81.4167px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;A123(D)</td>
+      <td class = "1124 seat2S" style="width: 81.4167px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;A124(D)</td>
+      <td class = "1125 seat2S" style="width: 81.4167px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;A125(D)</td>
+      <td class = "1126 seat2S" style="width: 84.2708px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;A126(D)</td>
+      <td style="width: 88.4583px; height: 14px; background-color: #6666ff;" colspan="4">&nbsp;Reception&nbsp;&nbsp;</td>
+      <td class = "2126 seat2S" style="width: 82.9583px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp; B126(D)</td>
+      <td class = "2125 seat2S" style="width: 82.9583px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp; B125(D)</td>
+      <td class = "2124 seat2S" style="width: 82.9583px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp; B124(D)</td>
+      <td class = "2123 seat2S" style="width: 82.9583px; height: 14px;" colspan="2">&nbsp;&nbsp;&nbsp; B123(D)</td>
+      <td style="width: 20px; height: 14px; background-color: #ffff4d;">&nbsp; W</td>
+      <td style="width: 41.4792px; height: 14px; background-color: #ffff4d;">&nbsp; W</td>
+      </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div class = "row legend">
+      <table style="height: 87px; border-color: #000000; float: left;" border="1" width="32">
+        <tbody>
+        <tr>
+        <td style="width: 31px; background-color: #ff1a1a; border-color: #000000;">&nbsp; Booked</td>
+        </tr>
+        <tr>
+        <td style="width: 31px; border-color: #000000; background-color: #4dff4d;">&nbsp;Available&nbsp;</td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    <h3 class="h3 select2 mb-3">
+    Select A Room
+    </h3>
+  <div class = "row select well card mb-5">
+<div class="wrap">
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="fields">{{ form.as_p }}</div>
+      <button type="submit" class="btn btn-primary" value="UPDATE">Update</button>
+    </form>
+  </div>
+{% endblock content %}
+</div>
+</div>
+
+    <script>
+
+      var myNodelist = document.getElementsByClassName("seat2S");
+
+      for(var i = 0; i < myNodelist.length; i++)
+      {
+        var num = 2;
+        var x = myNodelist[i].classList;
+        var y = x.item(0);
+        {% if rooms %}
+        {% for room in rooms %}
+        var number = {{room.no}};
+              if(y == number)
+              {
+                {% if room.vacant %}
+                num--;
+                {% endif %}
+              }
+        {% endfor %}
+        {% endif %}
+        if(num==2){
+        myNodelist[i].style.backgroundColor = "#ff1a1a";
+        }
+        else if(num==1){
+        myNodelist[i].style.backgroundColor = "#4dff4d";
+        }
+        else{
+        myNodelist[i].style.backgroundColor = "#4dff4d";
+        }
+        var z = myNodelist[i].classList;
+      }
+      var myNodelist = document.getElementsByClassName("seat1S");
+      
+      for(var i = 0; i < myNodelist.length; i++)
+      {
+        var num = 1;
+        var x = myNodelist[i].classList;
+        var y = x.item(0);
+        {% if rooms %}
+        {% for room in rooms %}
+        var number = {{room.no}};
+              if(y == number)
+              {
+                {% if room.vacant %}
+                num--;
+                {% endif %}
+              }
+        {% endfor %}
+        {% endif %}
+        if(num==1){
+        myNodelist[i].style.backgroundColor = "#ff1a1a";
+        }
+        else{
+        myNodelist[i].style.backgroundColor = "#4dff4d";
+        }
+        var z = myNodelist[i].classList;
+      }
+      </script>
+
+      {% comment %} <script>
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+      });
+      </script> {% endcomment %}
+
+</body>
